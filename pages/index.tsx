@@ -3,8 +3,9 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import axios from "axios";
+import Link from "next/link";
 
-type Post = {
+export type Post = {
   id: string;
   uuid: string;
   title: string;
@@ -54,9 +55,11 @@ const Home: NextPage<Props> = ({ posts }) => {
                 <p className="line-clamp-3 mt-2 mb-8 text-gray-700">
                   {post.excerpt}
                 </p>
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md mt-auto">
-                  Read More
-                </button>
+                <Link href={"/posts/" + post.slug} passHref>
+                  <a className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md mt-auto">
+                    Read More
+                  </a>
+                </Link>
               </div>
             ))}
           </div>
