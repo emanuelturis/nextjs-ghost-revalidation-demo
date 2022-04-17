@@ -24,8 +24,6 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ posts }) => {
-  console.log(posts);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -33,6 +31,10 @@ const Home: NextPage<Props> = ({ posts }) => {
         <meta name="description" content="Ghost NextJS Revalidation" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <main>
+        <div></div>
+      </main>
     </div>
   );
 };
