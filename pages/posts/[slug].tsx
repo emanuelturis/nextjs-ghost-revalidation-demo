@@ -18,10 +18,6 @@ const Post: NextPage<Props> = ({ post }) => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params && context.params.slug;
 
-  if (!slug) {
-    return { notFound: true };
-  }
-
   const post = await axios
     .get(
       `https://ghost-demo.webdevfuel.com/ghost/api/v4/content/posts/slug/${slug}`,
@@ -54,7 +50,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
