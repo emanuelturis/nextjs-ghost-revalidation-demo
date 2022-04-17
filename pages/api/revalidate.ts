@@ -10,7 +10,7 @@ export default async function handler(
 
   try {
     await res.unstable_revalidate("/");
-    await res.unstable_revalidate("/posts/" + req.query.slug);
+    await res.unstable_revalidate("/posts/" + req.body.post.current.slug);
     return res.status(200).json({
       success: true,
       message: "Post and posts index were successfully revalidated.",
