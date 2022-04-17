@@ -8,27 +8,14 @@ export default async function handler(
     return res.status(401).json({ message: "Unauthorized" });
   }
 
-  if (req.query.slug) {
-    try {
-      await res.unstable_revalidate("/posts/" + req.query.slug);
-      return res.status(200).json({
-        success: true,
-        message: "Post and posts index were successfully revalidated.",
-      });
-    } catch (err) {
-      return res.status(500).send("Error revalidating");
-    }
-  }
-
   try {
     await res.unstable_revalidate("/");
+    await res.unstable_revalidate("/posts/" + req.query.slug);
     return res.status(200).json({
       success: true,
-      message: "All posts and posts index were successfully revalidated.",
+      message: "Post and posts index were successfully revalidated.",
     });
   } catch (err) {
-    return res
-      .status(500)
-      .send({ success: false, message: "Error revalidating" });
+    return res.status(500).send("Error revalidating");
   }
 }
